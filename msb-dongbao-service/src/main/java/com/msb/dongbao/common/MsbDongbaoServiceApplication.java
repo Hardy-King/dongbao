@@ -1,4 +1,4 @@
-package com.msb.dongbao.portal.web;
+package com.msb.dongbao.common;
 
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;

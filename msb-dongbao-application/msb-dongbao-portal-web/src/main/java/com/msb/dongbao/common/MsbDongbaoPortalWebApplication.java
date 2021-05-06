@@ -1,4 +1,4 @@
-package com.msb.dongbao.portal.web;
+package com.msb.dongbao.common;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

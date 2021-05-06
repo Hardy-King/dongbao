@@ -1,4 +1,4 @@
-package com.msb.dongbao.portal.web.md5;
+package com.msb.dongbao.common.md5;
 
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +27,6 @@ public class EncoderOrDecoderTest {
         String s2 = bCryptPasswordEncoder.encode(sourceString);
         boolean matches2 = bCryptPasswordEncoder.matches(sourceString, s2);
         System.out.println("第2次加密的值"+s2);
-        System.out.println("第一次验证："+matches2);
+        System.out.println("第2次验证："+matches2);
     }
 }

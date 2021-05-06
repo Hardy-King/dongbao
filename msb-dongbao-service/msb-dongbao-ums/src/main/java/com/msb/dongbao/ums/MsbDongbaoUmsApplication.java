@@ -1,4 +1,4 @@
-package com.msb.ums;
+package com.msb.dongbao.ums;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

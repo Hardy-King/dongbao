@@ -1,1 +1,31 @@
+server:
+  port: 8080
 
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/msb_dongbao_test?serverTimezone=CTT&useUnicode=true&characterEncoding=utf8
+    password: 'root'
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:com/mashibing/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      mashibing:
+        mapper: debug
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations:
+    -classpath*:/com/msb/dongbao/ums/mapper/xml/*.xml
+  type-aliases-package: com.msb.dongbao.ums.entity
