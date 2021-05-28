@@ -44,7 +44,45 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.5.4</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha</artifactId>
+            <version>1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.jhlabs</groupId>
+                    <artifactId>imaging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ramostear</groupId>
+            <artifactId>Happy-Captcha</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--在jcaptcha依赖中排除com.jhlabs。imaging 防止报错，下面依赖中也包含了此包-->
+        <!--kcaptcha-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>kaptcha-spring-boot-starter</artifactId>
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
