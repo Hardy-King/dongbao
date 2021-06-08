@@ -1,11 +1,9 @@
-package com.msb.dongbao.common.controller;
+package com.msb.dongbao.controller.studyCaptcha;
 
-import com.msb.dongbao.code.ImageCode;
 import com.msb.dongbao.common.base.annotations.TokenCheck;
 import com.msb.dongbao.util.JcaptchaUtil;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,9 +12,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.Base64;
 
 @RestController
 @RequestMapping("/jcaptcha")

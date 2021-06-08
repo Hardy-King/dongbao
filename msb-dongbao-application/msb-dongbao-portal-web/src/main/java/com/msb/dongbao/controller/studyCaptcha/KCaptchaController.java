@@ -1,24 +1,16 @@
-package com.msb.dongbao.common.controller;
+package com.msb.dongbao.controller.studyCaptcha;
 
 import com.baomidou.kaptcha.Kaptcha;
 import com.baomidou.kaptcha.exception.KaptchaNotFoundException;
 import com.msb.dongbao.common.base.annotations.TokenCheck;
 import com.msb.dongbao.custom.MyGoogleKaptcha;
-import com.wf.captcha.ChineseCaptcha;
-import com.wf.captcha.SpecCaptcha;
-import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/k-captcha")

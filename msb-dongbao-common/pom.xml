@@ -10,6 +10,7 @@
     <groupId>com.msb</groupId>
     <artifactId>msb-dongbao-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>msb-dongbao-common</name>
     <description>Demo project for Spring Boot</description>
 

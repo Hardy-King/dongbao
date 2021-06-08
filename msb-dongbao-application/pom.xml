@@ -11,6 +11,7 @@
     <groupId>com.msb</groupId>
     <artifactId>msb-dongbao-application</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>msb-dongbao-application</name>
     <description>Demo project for Spring Boot</description>
 

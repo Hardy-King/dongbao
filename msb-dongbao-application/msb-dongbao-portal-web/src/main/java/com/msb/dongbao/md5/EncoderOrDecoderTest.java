@@ -1,4 +1,4 @@
-package com.msb.dongbao.common.md5;
+package com.msb.dongbao.md5;
 
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
