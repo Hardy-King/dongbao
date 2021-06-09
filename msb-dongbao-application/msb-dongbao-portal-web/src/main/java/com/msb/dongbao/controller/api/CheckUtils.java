@@ -1,6 +1,7 @@
 package com.msb.dongbao.controller.api;
 
 import com.msb.dongbao.Util.MD5Util;
+import com.msb.dongbao.Util.Sha256Utils;
 
 import java.util.*;
 
@@ -10,6 +11,9 @@ public class CheckUtils {
 
     //根据map生成签名
     public static String generatorSign(Map<String,Object> map) {
+        if (map.get("sign")!=null) {
+            map.remove("sign");
+        }
         //排序
         Map<String,Object> stringObjectMap = sortMapByKey(map);
         //转格式：name=zhangsan&age=10，：name，张三，age，10
@@ -21,8 +25,9 @@ public class CheckUtils {
         //组装secret，在参数的后面添加secret
         sb.append("secret").append(appSecret);
         //生成签名
-
-        return MD5Util.md5(sb.toString());
+        //return MD5Util.md5(sb.toString());
+        System.out.println("gen1:"+Sha256Utils.getSHA256(sb.toString()));
+        return Sha256Utils.getSHA256(sb.toString());
     }
 
     public static Map<String,Object> sortMapByKey(Map<String,Object> map) {
@@ -48,8 +53,10 @@ public class CheckUtils {
 
         map.put("appId",1);
         map.put("name",2);
+        //map.put("timestamp",1623157434000L);
 
         String s = generatorSign(map);
-        System.out.println(s);//签名：a3337ee5d708e41ac38bd0d88561b95f
+        System.out.println(s);//MD5签名：a3337ee5d708e41ac38bd0d88561b95f
+        //sha256签名：f8aa720c569bc46deba2a23e7ce257b6d8412d2cd2396cac5c01634718f86c4d
     }
 }
