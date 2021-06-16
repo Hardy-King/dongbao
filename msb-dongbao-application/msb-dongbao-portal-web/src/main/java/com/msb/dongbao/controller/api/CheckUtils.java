@@ -9,17 +9,28 @@ public class CheckUtils {
 
     public static String appSecret = "aaa";
 
+    public static boolean checkSign(Map<String,String> map) {
+        String sign = (String)map.get("sign");
+        map.remove("sign");
+        //生成sign
+        String s = CheckUtils.generatorSign(map);
+        if (s.equals(sign)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     //根据map生成签名
-    public static String generatorSign(Map<String,Object> map) {
+    public static String generatorSign(Map<String,String> map) {
         if (map.get("sign")!=null) {
             map.remove("sign");
         }
         //排序
-        Map<String,Object> stringObjectMap = sortMapByKey(map);
+        Map<String,String> stringObjectMap = sortMapByKey(map);
         //转格式：name=zhangsan&age=10，：name，张三，age，10
-        Set<Map.Entry<String, Object>> entries = stringObjectMap.entrySet();
+        Set<Map.Entry<String, String>> entries = stringObjectMap.entrySet();
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, Object> entry : entries) {
+        for (Map.Entry<String, String> entry : entries) {
             sb.append(entry.getKey()+","+ entry.getValue()).append("#");
         }
         //组装secret，在参数的后面添加secret
@@ -30,9 +41,9 @@ public class CheckUtils {
         return Sha256Utils.getSHA256(sb.toString());
     }
 
-    public static Map<String,Object> sortMapByKey(Map<String,Object> map) {
+    public static Map<String,String> sortMapByKey(Map<String,String> map) {
         //判断一下map是否为空，自己写
-        Map<String,Object> sortMap = new TreeMap<>(new MyMapComparator());
+        Map<String,String> sortMap = new TreeMap<>(new MyMapComparator());
         sortMap.putAll(map);
         return sortMap;
     }
@@ -45,14 +56,15 @@ public class CheckUtils {
 
     public static void main(String[] args) {
         HashMap map = new HashMap();
-        /*map.put("dee",1);
-        map.put("tre",2);
-        map.put("asd",3);
-        Map map1 = sortMapByKey(map);
-        System.out.println(map1);*/
+        map.put("appId","1");
+        map.put("name","2");
+        map.put("urlParam","3");
 
-        map.put("appId",1);
-        map.put("name",2);
+        Map map1 = sortMapByKey(map);
+        System.out.println(map1);
+
+//        map.put("appId",1);
+//        map.put("name",2);
         //map.put("timestamp",1623157434000L);
 
         String s = generatorSign(map);

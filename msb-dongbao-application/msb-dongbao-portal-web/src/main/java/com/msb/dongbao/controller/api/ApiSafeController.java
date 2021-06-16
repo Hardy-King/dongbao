@@ -31,7 +31,7 @@ public class ApiSafeController {
     @RequestMapping("/get-test")
     public String getTest(String appId, String name, String sign, long timestamp, HttpServletRequest request) {
 
-        HashMap<String,Object> map = new HashMap<>();
+        HashMap<String,String> map = new HashMap<>();
         // 参数写死，实际工作中是不能这么做的
 //        map.put("appId",appId);
 //        map.put("name",name);
@@ -47,10 +47,10 @@ public class ApiSafeController {
             map.put(parameterName,parameterValue);
         }
         // 让接口在有效期内有效
-       /* long time = System.currentTimeMillis()- timestamp;
-        if(time > 1000*30) {
-            return "接口过期了";
-        }*/
+//        long time = System.currentTimeMillis()- timestamp;
+//        if(time > 1000*30) {
+//            return "接口过期了";
+//        }
         System.out.println(map);
         String s = CheckUtils.generatorSign(map);
         if (s.equals(sign)) {
@@ -62,12 +62,18 @@ public class ApiSafeController {
 
     @PostMapping("/post-test")
     public String postTest(@RequestBody SignDTO signDTO){
-
+        System.out.println("进入Controller方法");
         JSONObject obj = JSONUtil.parseObj(signDTO);
+        System.out.println("Controller参数:"+obj);
+
+        //工具类 直接校验sign  每个类都写不如写filter
+        boolean b = CheckUtils.checkSign(new HashMap<>());
+
+        //以下用过滤器
         //1.参数转map
-        Map<String, Object> stringObjectMap = Convert.toMap(String.class, Object.class, obj);
+        Map<String, String> stringObjectMap = Convert.toMap(String.class, String.class, obj);
         //2.排序
-        Map<String, Object> stringObjectMap1 = CheckUtils.sortMapByKey(stringObjectMap);
+        Map<String, String> stringObjectMap1 = CheckUtils.sortMapByKey(stringObjectMap);
         //3.map生成签名
         Object signClient = stringObjectMap1.get("sign");
         String signServer = CheckUtils.generatorSign(stringObjectMap1);
@@ -79,5 +85,7 @@ public class ApiSafeController {
         }else {
             return "校验 不通过";
         }
+        //用过滤器
+        //return "controller";
     }
 }
