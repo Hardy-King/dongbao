@@ -45,7 +45,8 @@ public class UmsMemberServiceImpl extends ServiceImpl<UmsMemberMapper, UmsMember
         // 判断umsMember是否存在
         if (umsMember1 == null){
 
-            String password = umsMember.getPassword();
+            String password = umsMemberRegisterParamDTO.getPassword();
+            // 加密方式 bCryptPasswordEncoder
             String encode = bCryptPasswordEncoder.encode(password);
             umsMember.setPassword(encode);
             umsMemberMapper.insert(umsMember);
