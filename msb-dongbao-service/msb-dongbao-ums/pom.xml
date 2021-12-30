@@ -6,6 +6,7 @@
         <groupId>com.msb</groupId>
         <artifactId>msb-dongbao-mall-parent-v1</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.msb</groupId>
     <artifactId>msb-dongbao-ums</artifactId>
@@ -21,16 +22,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.4.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.4.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.4.1</version>
         </dependency>
 
         <dependency>
@@ -44,6 +48,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.25</version>
         </dependency>
 
         <dependency>

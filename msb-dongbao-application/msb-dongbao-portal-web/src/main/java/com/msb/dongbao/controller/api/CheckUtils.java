@@ -9,7 +9,7 @@ public class CheckUtils {
 
     public static String appSecret = "aaa";
 
-    public static boolean checkSign(Map<String,String> map) {
+    public static boolean checkSign(Map<String,Object> map) {
         String sign = (String)map.get("sign");
         map.remove("sign");
         //生成sign
@@ -21,29 +21,30 @@ public class CheckUtils {
         }
     }
     //根据map生成签名
-    public static String generatorSign(Map<String,String> map) {
+    public static String generatorSign(Map<String,Object> map) {
         if (map.get("sign")!=null) {
             map.remove("sign");
         }
-        //排序
-        Map<String,String> stringObjectMap = sortMapByKey(map);
-        //转格式：name=zhangsan&age=10，：name，张三，age，10
-        Set<Map.Entry<String, String>> entries = stringObjectMap.entrySet();
+        //1.排序 按照字典顺序排序
+        Map<String,Object> stringObjectMap = sortMapByKey(map);
+        //2.转格式：name=zhangsan&age=10，----->  name，张三，age，10
+        Set<Map.Entry<String, Object>> entries = stringObjectMap.entrySet();
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> entry : entries) {
+        for (Map.Entry<String, Object> entry : entries) {
             sb.append(entry.getKey()+","+ entry.getValue()).append("#");
         }
-        //组装secret，在参数的后面添加secret
+        //sb.subSequence(0,sb.length()-1);
+        //3.组装secret，在参数的后面添加secret
         sb.append("secret").append(appSecret);
-        //生成签名
+        //4.生成签名
         //return MD5Util.md5(sb.toString());
         System.out.println("gen1:"+Sha256Utils.getSHA256(sb.toString()));
         return Sha256Utils.getSHA256(sb.toString());
     }
 
-    public static Map<String,String> sortMapByKey(Map<String,String> map) {
+    public static Map<String,Object> sortMapByKey(Map<String,Object> map) {
         //判断一下map是否为空，自己写
-        Map<String,String> sortMap = new TreeMap<>(new MyMapComparator());
+        Map<String,Object> sortMap = new TreeMap<>(new MyMapComparator());
         sortMap.putAll(map);
         return sortMap;
     }
@@ -59,13 +60,13 @@ public class CheckUtils {
         map.put("appId","1");
         map.put("name","2");
         map.put("urlParam","3");
-
+        //map.put("timestamp",1623917842000L);
         Map map1 = sortMapByKey(map);
         System.out.println(map1);
 
 //        map.put("appId",1);
 //        map.put("name",2);
-        //map.put("timestamp",1623157434000L);
+
 
         String s = generatorSign(map);
         System.out.println(s);//MD5签名：a3337ee5d708e41ac38bd0d88561b95f
