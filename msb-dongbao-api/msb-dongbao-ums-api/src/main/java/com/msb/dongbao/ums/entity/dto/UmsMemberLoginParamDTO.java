@@ -8,5 +8,4 @@ import lombok.ToString;
 public class UmsMemberLoginParamDTO {
     private String username;
     private String password;
-    private String testFiled;
 }
